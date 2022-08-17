@@ -1,0 +1,19 @@
+{
+    "name": "sorok/filakube-admin",
+    "description": "Admin package on top laravel filament.",
+    "type": "filament-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sorethea\\FilakubeAdmin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sorethea OK",
+            "email": "sorethea@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
