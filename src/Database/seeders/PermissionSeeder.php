@@ -1,39 +1,55 @@
 <?php
 
-namespace Sorethea\FilakubeAdmin\Database\seeders;
+namespace Database\seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
     public function run()
     {
-        //UserResource permission
-        DB::table("permissions")->insert(["name"=>"users.viewAny"]);
-        DB::table("permissions")->insert(["name"=>"users.view"]);
-        DB::table("permissions")->insert(["name"=>"users.create"]);
-        DB::table("permissions")->insert(["name"=>"users.update"]);
-        DB::table("permissions")->insert(["name"=>"users.delete"]);
-        DB::table("permissions")->insert(["name"=>"users.restore"]);
-        DB::table("permissions")->insert(["name"=>"users.forceDelete"]);
+        $permissions =[
+            "users.viewAny",
+            "users.view",
+            "users.create",
+            "users.update",
+            "users.delete",
+            "users.restore",
+            "users.forceDelete",
+            "permissions.viewAny",
+            "permissions.view",
+            "permissions.create",
+            "permissions.update",
+            "permissions.delete",
+            "permissions.restore",
+            "permissions.forceDelete",
+            "roles.viewAny",
+            "roles.view",
+            "roles.create",
+            "roles.update",
+            "roles.delete",
+            "roles.restore",
+            "roles.forceDelete",
+        ];
+        $user = User::create([
+            "name"=>"Administrator",
+            "email"=>"admin@filakube.com",
+            "password"=>Hash::make("12345678"),
+        ]);
 
-        //RoleResource permission
-        DB::table("permissions")->insert(["name"=>"roles.viewAny"]);
-        DB::table("permissions")->insert(["name"=>"roles.view"]);
-        DB::table("permissions")->insert(["name"=>"roles.create"]);
-        DB::table("permissions")->insert(["name"=>"roles.update"]);
-        DB::table("permissions")->insert(["name"=>"roles.delete"]);
-        DB::table("permissions")->insert(["name"=>"roles.restore"]);
-        DB::table("permissions")->insert(["name"=>"roles.forceDelete"]);
+        $role = Role::create(["name"=>"admin"]);
+        $user->assignRole($role);
 
-        //PermissionResource permission
-        DB::table("permissions")->insert(["name"=>"permissions.viewAny"]);
-        DB::table("permissions")->insert(["name"=>"permissions.view"]);
-        DB::table("permissions")->insert(["name"=>"permissions.create"]);
-        DB::table("permissions")->insert(["name"=>"permissions.update"]);
-        DB::table("permissions")->insert(["name"=>"permissions.delete"]);
-        DB::table("permissions")->insert(["name"=>"permissions.restore"]);
-        DB::table("permissions")->insert(["name"=>"permissions.forceDelete"]);
+        foreach ($permissions as $perm){
+            $permission = Permission::create([
+                "name"=>$perm,
+            ]);
+            $permission->assignRole($role);
+        }
     }
 }
