@@ -15,5 +15,8 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "filament/filament": "^2.0",
+        "spatie/laravel-permission": "^5.0"
+    }
 }
