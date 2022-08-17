@@ -15,6 +15,16 @@
         }
     ],
     "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sorethea\\FilakubAdmin\\AdminServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        }
+    },
     "require": {
         "filament/filament": "^2.0",
         "spatie/laravel-permission": "^5.0"
