@@ -2,10 +2,13 @@
 
 namespace Sorethea\FilakubeAdmin;
 
+use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
+use Sorethea\FilakubeAdmin\Filament\Pages\Profile;
 use Sorethea\FilakubeAdmin\Filament\Resources\PermissionResource;
 use Sorethea\FilakubeAdmin\Filament\Resources\RoleResource;
 use Sorethea\FilakubeAdmin\Filament\Resources\UserResource;
+use Spatie\LaravelPackageTools\Package;
 
 class ResourceServiceProvider extends PluginServiceProvider
 {
@@ -15,4 +18,21 @@ class ResourceServiceProvider extends PluginServiceProvider
         RoleResource::class,
         PermissionResource::class,
     ];
+
+    protected array $pages = [
+        Profile::class,
+    ];
+    protected function getUserMenuItems(): array
+    {
+        return [
+            UserMenuItem::make()
+                ->label('Profile')
+                ->url(route('filament.pages.profile'))
+                ->icon('heroicon-s-user'),
+        ];
+    }
+    public function configurePackage(Package $package): void
+    {
+        $package->name('filakube-admin');
+    }
 }
