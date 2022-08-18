@@ -1,6 +1,8 @@
 <?php
 namespace Sorethea\FilakubeAdmin;
 
+use Filament\Facades\Filament;
+use Filament\Navigation\UserMenuItem;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
@@ -14,6 +16,7 @@ class AdminServiceProvider extends ServiceProvider
     {
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(ResourceServiceProvider::class);
+
     }
 
     /**
@@ -23,9 +26,11 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         if ($this->app->runningInConsole()) {
             $this->publishResources();
         }
+
     }
 
     public function publishResources(){
