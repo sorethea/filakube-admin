@@ -1,5 +1,5 @@
 {
-    "name": "sorok/filakube-admin",
+    "name": "sorethea/filakube-admin",
     "description": "Admin package on top laravel filament.",
     "type": "filament-plugin",
     "license": "MIT",
